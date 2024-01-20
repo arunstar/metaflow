@@ -7,8 +7,6 @@ on:
   pull_request_target:
     types:
       - opened
-      - synchronize
-      - labeled
 
 permissions: read-all
 
@@ -25,7 +23,7 @@ jobs:
     steps:
     - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2.7.0
       with:
-        ref: refs/pull/${{ github.event.pull_request.number }}/merge
+        ref: ${{ github.event.pull_request.head.sha }}
         submodules: recursive
     - name: Set up Python
       uses: actions/setup-python@75f3110429a8c05be0e1bf360334e4cced2b63fa # v2.3.3
